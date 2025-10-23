@@ -13,54 +13,55 @@ void printVector(const vector<int>& v, string title) {
 int main() {
     vector<int> data = { 5, 2, 9, 1, 5, 6 };
 
-    // 1? std::sort ? ±âº» Á¤·Ä
+    // 1 std::sort ? ê¸°ë³¸ ì •ë ¬
     vector<int> v1 = data;
     sort(v1.begin(), v1.end());
     printVector(v1, "1. sort");
 
-    // 2? std::stable_sort ? ¾ÈÁ¤ Á¤·Ä
+    // 2 std::stable_sort ? ì•ˆì • ì •ë ¬
     vector<pair<int, char>> v2 = { {3, 'A'}, {1, 'B'}, {3, 'C'}, {2, 'D'} };
     stable_sort(v2.begin(), v2.end(), [](auto& a, auto& b) { return a.first < b.first; });
-    cout << "2. stable_sort °á°ú\n";
+    cout << "2. stable_sort ê²°ê³¼\n";
     for (auto& [num, ch] : v2) cout << "(" << num << "," << ch << ") ";
     cout << "\n\n";
 
-    // 3? std::partial_sort ? ÀÏºÎ¸¸ Á¤·Ä
+    // 3 std::partial_sort ? ì¼ë¶€ë§Œ ì •ë ¬
     vector<int> v3 = data;
     partial_sort(v3.begin(), v3.begin() + 3, v3.end());
     printVector(v3, "3. partial_sort");
 
-    // 4? std::nth_element ? n¹øÂ° ¿ø¼Ò À§Ä¡¸¸ Á¤È®È÷ Á¤·Ä
+    // 4 std::nth_element ? në²ˆì§¸ ì›ì†Œ ìœ„ì¹˜ë§Œ ì •í™•íˆ ì •ë ¬
     vector<int> v4 = data;
-    nth_element(v4.begin(), v4.begin() + 2, v4.end()); // 3¹øÂ°·Î ÀÛÀº ¿ø¼Ò¸¦ v4[2]·Î ÀÌµ¿
+    nth_element(v4.begin(), v4.begin() + 2, v4.end()); // 3ë²ˆì§¸ë¡œ ì‘ì€ ì›ì†Œë¥¼ v4[2]ë¡œ ì´ë™
     printVector(v4, "4. nth_element");
 
-    // 5? std::is_sorted ? Á¤·Ä ¿©ºÎ È®ÀÎ
+    // 5 std::is_sorted ? ì •ë ¬ ì—¬ë¶€ í™•ì¸
     cout << "5. is_sorted(v1): " << boolalpha << is_sorted(v1.begin(), v1.end()) << "\n";
     cout << "   is_sorted(data): " << boolalpha << is_sorted(data.begin(), data.end()) << "\n\n";
 
-    // 6? Èü ±â¹İ Á¤·Ä make_heap / sort_heap
+    // 6 í™ ê¸°ë°˜ ì •ë ¬ make_heap / sort_heap
     vector<int> v6 = data;
-    make_heap(v6.begin(), v6.end());  // Èü ±¸¼º
-    sort_heap(v6.begin(), v6.end());  // ÈüÀ» Á¤·Ä
+    make_heap(v6.begin(), v6.end());  // í™ êµ¬ì„±
+    sort_heap(v6.begin(), v6.end());  // í™ì„ ì •ë ¬
     printVector(v6, "6. sort_heap");
 
-    // 7? std::merge ? µÎ Á¤·ÄµÈ ¹üÀ§¸¦ ÇÕÄ¡±â
+    // 7 std::merge ? ë‘ ì •ë ¬ëœ ë²”ìœ„ë¥¼ í•©ì¹˜ê¸°
     vector<int> a = { 1, 3, 5 };
     vector<int> b = { 2, 4, 6 };
     vector<int> merged(6);
     merge(a.begin(), a.end(), b.begin(), b.end(), merged.begin());
     printVector(merged, "7. merge");
 
-    // 8? std::binary_search ? Á¤·ÄµÈ ¹üÀ§¿¡¼­ Å½»ö
+    // 8 std::binary_search ? ì •ë ¬ëœ ë²”ìœ„ì—ì„œ íƒìƒ‰
     int target = 5;
     bool found = binary_search(v1.begin(), v1.end(), target);
-    cout << "8. binary_search(5) °á°ú: " << (found ? "Á¸ÀçÇÔ o" : "¾øÀ½ x") << "\n";
+    cout << "8. binary_search(5) ê²°ê³¼: " << (found ? "ì¡´ì¬í•¨ o" : "ì—†ìŒ x") << "\n";
 
-    // 9? std::inplace_merge ? Á¦ÀÚ¸® º´ÇÕ
-    vector<int> v9 = { 1, 4, 7, 2, 5, 8 }; // µÎ ±¸°£ {1,4,7}°ú {2,5,8}Àº °¢°¢ Á¤·ÄµÊ
+    // 9 std::inplace_merge ? ì œìë¦¬ ë³‘í•©
+    vector<int> v9 = { 1, 4, 7, 2, 5, 8 }; // ë‘ êµ¬ê°„ {1,4,7}ê³¼ {2,5,8}ì€ ê°ê° ì •ë ¬ë¨
     inplace_merge(v9.begin(), v9.begin() + 3, v9.end());
     printVector(v9, "9. inplace_merge");
 
     return 0;
+
 }
